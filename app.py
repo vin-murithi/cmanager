@@ -20,7 +20,7 @@ df_registered_voters = pd.read_excel(
 # Read excel list of recruited voters
 df_recruited_voters = pd.read_excel(
     io='recruited_voters.xlsx',
-    engine='openpyxl',
+    engine='openpyxl',  
     sheet_name='recruited_voters',
     skiprows=0,
     usecols='A:N',

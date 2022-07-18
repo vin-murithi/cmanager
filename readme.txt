@@ -94,8 +94,37 @@ processing and filtering data using pandas date, count,
 
 14-07-2022
 1. Use Excel writer to append the data
-2. 
 
+18-07-2022
+Visualization:
+	1.Refine the UI
+		Separate code for pages into functions and more documents.
+		Grid UI components: make them flow and compact
+	2.Tally voters per ward, make the program ward oriented
+	3.Make Projections consequential
+input:
+	4.Make New recruitees added append to recruited_voters.xlsx **
+	5.Calculate the age on entry**
+	6.Create Compound ID on entry
+	7.Add Autofill on entry
+Administrative regions Worksheet
+Meru Worksheet
+	1.Constituencies
+	2.Ward
+	3.Polling stations  & no of registered voters
+
+With County and polling sttion, how do I autofill constituency and ward
+	-I need to check polling station against wards 
+	-then wards against constituency
+	for this I will need a list of constituencies and wards
+	This will use string comparison
+Or:
+	I can get the polling station code and split the code as it is made up of a concantenation of it's Supers codes.
+	-I will need a dictionary of polling stations and their codes
+	-Dictionary of polling wards, constituencies, counties with their codes.
+	This will use number comparison
+I need to create datasets: Meru
+Get rows with meru: Get constituencies, get wards in those constituencies, get polling stations in those wards.
 
 **************************************************************************************************************************************
 DOCUMENTATION
