@@ -8,6 +8,14 @@ from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from zmq import REQ_CORRELATE
 
+# Specify the page layout using streamlit
+st.set_page_config(
+    layout='wide',
+    page_title='Campaign Dashboard',
+    page_icon=':bar_chart',
+)
+
+
 # Reads an excel file as a panda Dataframe: 2 dimensional array with labeled rows and columns
 df_registered_voters = pd.read_excel(
     io='mauaVoters.xlsx',
@@ -21,7 +29,7 @@ df_registered_voters = pd.read_excel(
 df_recruited_voters = pd.read_excel(
     io='recruited_voters.xlsx',
     engine='openpyxl',  
-    sheet_name='recruited_voters',
+    sheet_name='Recruited Voters',
     skiprows=0,
     usecols='A:N',
     # nrows=18,
@@ -31,7 +39,7 @@ df_recruited_voters = pd.read_excel(
 recruitment_dates = pd.read_excel(
     io='recruited_voters.xlsx',
     engine='openpyxl',
-    sheet_name='recruited_voters',
+    sheet_name='Recruited Voters',
     skiprows=0,
     usecols='D',
     # nrows=18,
@@ -91,12 +99,6 @@ pessimistic_progress = go.Figure(go.Indicator(
     domain = {'x': [0, 0.5], 'y': [0, 0.5]}
 ))
 
-# Specify the page layout using streamlit
-st.set_page_config(
-    page_title='Campaign Dashboard',
-    page_icon=':bar_chart',
-    layout='wide'
-)
 
 def filterByDate(period):
     recruited_voters = df_recruited_voters

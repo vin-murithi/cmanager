@@ -126,6 +126,66 @@ Or:
 I need to create datasets: Meru
 Get rows with meru: Get constituencies, get wards in those constituencies, get polling stations in those wards.
 
+20-07-2022
+Get subset for county
+Use state to:
+	-get value of selected county
+	-Use that vaue to select the registration centers within it
+	-Change the select box to contain the given registration centers
+Once you get county and name:
+	-Get constituency and ward
+
+21-07-2022
+creating a recruitee ID
+affiliate_level-recruitor_id-identifier
+A-A1-2
+B-A15-25
+X-Y200-340
+
+Add Target office
+	Governor - consider countywide voters, all constituencies, wards and polling station within
+	MP - consider one constituency and all wards and polling stations within
+	MCA - consider one constituency and one ward and all polling stations within.
+
+Refine the Layout:
+How to Style Tables
+IEBC Data:
+	-View data by county - select box
+	-Stats on top: Registration centers and total registered voters
+	-Allow Addition of filters by: constituency_name, ward_name, registration_center_name
+Projections:
+	-According to county selected and filters applied
+	-Input Pessimistic projection
+	-Input optimistic projections
+	-Get an optimistic and pessimistic figure for voters in a given area.
+Recruitments:
+	Have tab that can switch between list of recruitees and insights
+	insights
+		-Voter Ages
+		-Gender ratio
+		-Total number of recruited voters
+Progress:
+	-Optimistic and pessimistic values against actual recruited voters
+	-Time to elections
+	-Affiliate level
+	-Graph of weekly recruitment rates
+
+How to create dummy data???
+Dummy data for Meru, Igembe south MP 
+Data span =  May 1st to current date but before aug 8th
+
+recruitment dates span the data span
+name - random 2 names
+Gender - random choice between m and f
+DOB - earliest: 1957 jan 1 to 2002 (current date) - 1.
+age is from today-DOB
+Phone_number is a random 9 digit number starting with 7
+email: lowercase concantenation of name + '@mail.com'
+Polling stations - relies on office scope, Start with Constituency: Igembe South
+ward
+constituency_autofill
+ward_autofill
+
 **************************************************************************************************************************************
 DOCUMENTATION
 Installation
@@ -136,15 +196,27 @@ Installation
 -pip install plotly-express
 
 File Descriptions
-app.py
+1.dashboard.py
 -Entry point point of the program
 -Read the file as panda dataframe
 -Create the layout of the dashboard
 
-entry.py
+2.entry.py
 -Has a form with 7 inputs and a submit button
 -Form data saves in a dictionary
 -Dictionary is saved in a list
 -List converted to a dataframe and written to an excel file.
+
+3.rows_where.py
+-takes in a file and an index
+-locates necessary rows and columns
+-Writes the rows and columns to a structure.
+
+4.df_to_list.py
+-get's an excel file and returns the headers (columns)
+
+5.locate_row.py
+-get row where column is equal to a given value
+
 
 
