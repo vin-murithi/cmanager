@@ -146,33 +146,40 @@ Add Target office
 	Governor - consider countywide voters, all constituencies, wards and polling station within
 	MP - consider one constituency and all wards and polling stations within
 	MCA - consider one constituency and one ward and all polling stations within.
+select office
+select county
 
+22-07-2022
 Refine the Layout:
 How to Style Tables
+Profile:
+	-Have the name of Person vying
+	-Office sought
+	-This provides pertinent regions to choose from
+	-Voters and administrative regions are calculated depending on office  and chosen region[more for governor than mca]
 IEBC Data:
-	-View data by county - select box
-	-Stats on top: Registration centers and total registered voters
-	-Allow Addition of filters by: constituency_name, ward_name, registration_center_name
+	-View data according to office selected in the profile
+	-Stats included: Total regions depending on office and total registered voters
 Projections:
-	-According to county selected and filters applied
+	-According to voters calculated in profile
 	-Input Pessimistic projection
 	-Input optimistic projections
 	-Get an optimistic and pessimistic figure for voters in a given area.
 Recruitments:
-	Have tab that can switch between list of recruitees and insights
+	Has List of voters and insights
 	insights
-		-Voter Ages
 		-Gender ratio
 		-Total number of recruited voters
 Progress:
 	-Optimistic and pessimistic values against actual recruited voters
 	-Time to elections
-	-Affiliate level
+	-Affiliate levels
 	-Graph of weekly recruitment rates
 
 How to create dummy data???
 Dummy data for Meru, Igembe south MP 
 Data span =  May 1st to current date but before aug 8th
+
 
 recruitment dates span the data span
 name - random 2 names
@@ -196,10 +203,12 @@ Installation
 -pip install plotly-express
 
 File Descriptions
-1.dashboard.py
+1.Home.py
+-Holds all raw dataframes from excel documents that can me used by other files
 -Entry point point of the program
 -Read the file as panda dataframe
 -Create the layout of the dashboard
+-Input the user profile
 
 2.entry.py
 -Has a form with 7 inputs and a submit button

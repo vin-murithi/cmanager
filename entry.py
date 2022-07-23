@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 from tomlkit import key
-from data import county_list
+from data.data import county_list
 from datetime import date
-from df_to_list import get_column_values
-from locate_row import get_row
+from utilities.df_to_list import get_column_values
+from utilities.locate_row import get_row
 from dateutil.relativedelta import *
 
 # Page configuration
@@ -15,7 +15,7 @@ st.set_page_config(
 st.title('Add new recruited voter')
 
 #Initialize state values
-if 'registration_centers' not in st.session_state:
+if 'registration_centers' and 'county' not in st.session_state:
     st.session_state.registration_centers = ['Please fill in county to get Polling Stations']
     st.session_state.county = ''
 
@@ -63,7 +63,7 @@ with st.form('add_recruited_voter'):
     # On submit: calculate age, autofill fields, ,create id, create dictionary, add to excel file
     if submit_button:
         # Calculate age
-        today = date.today()
+        today = date.today().strftime()
         age = relativedelta(today, dob).years
         # Autofill ward and constituency [make county uppercase when calling function]
         row = get_row(file,column,polling_station,county.upper())

@@ -1,5 +1,5 @@
 import pandas as pd
-from data import county_list
+from data.data import county_list
 
 #Take in file and county
 file = 'voters_per_polling_station.xlsx'
