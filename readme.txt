@@ -138,6 +138,11 @@ Once you get county and name:
 21-07-2022
 creating a recruitee ID
 affiliate_level-recruitor_id-identifier
+00200112
+002,0011,2
+001,
+
+002-001.1-2
 A-A1-2
 B-A15-25
 X-Y200-340
@@ -170,6 +175,7 @@ Recruitments:
 	insights
 		-Gender ratio
 		-Total number of recruited voters
+		-Age of recruited voters.
 Progress:
 	-Optimistic and pessimistic values against actual recruited voters
 	-Time to elections

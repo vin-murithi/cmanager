@@ -8,9 +8,7 @@ from utilities.init_state_session import init_session_state_values
 
 #session state variables
 ss = st.session_state
-#Initialize state values using custom imported function 
-init_session_state_values(ss)
-ss
+
 
 st.subheader('What is your projected voter turnout in % ?')
 optimistic_projection = st.text_input("Optimistic Projection", ss.optimistic_projection, key='optimistic_projection')
@@ -28,12 +26,18 @@ optimistic_turnout_fig = go.Figure(go.Indicator(
             mode = "number",
             value = optimistic_turnout,
             title = {'text': "Optimistic voter turnout"},
+            domain = {'x': [0, 0.4], 'y': [0, 0.5]}
+
         ))
 pessimistic_turnout_fig = go.Figure(go.Indicator(
             mode = "number",
             value = pessimistic_turnout,
             title = {'text': "Pessimistic voter turnout"},
+            domain = {'x': [0, 0.4], 'y': [0, 0.5]}
         ))
 
-st.plotly_chart(optimistic_turnout_fig)
-st.plotly_chart(pessimistic_turnout_fig)
+col1, col2 = st.columns(2)
+with col1:
+    st.plotly_chart(optimistic_turnout_fig)
+with col2:
+    st.plotly_chart(pessimistic_turnout_fig)

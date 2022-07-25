@@ -39,12 +39,12 @@ def get_centers():
 #get affiliate level
 def get_affiliate_level(recruitor_id):
     #split recruitor id
-    recruitor_affiliate_level = recruitor_id.split('-')
+    recruitor_affiliate_level = recruitor_id[2]
     #take the first section of Id
-    recruitor_affiliate_level = recruitor_affiliate_level[0]
+    recruitor_affiliate_level = int(recruitor_affiliate_level)
     #increment id and return it
-    recruitee_affiliate_level = chr(ord(recruitor_affiliate_level)+1)
-    return recruitee_affiliate_level
+    recruitee_affiliate_level = recruitor_affiliate_level+1
+    return str(recruitee_affiliate_level)
 
 # Create the form 
 county = st.selectbox("County", county_list, on_change=get_centers(), key='county')
@@ -63,20 +63,21 @@ with st.form('add_recruited_voter'):
     # On submit: calculate age, autofill fields, ,create id, create dictionary, add to excel file
     if submit_button:
         # Calculate age
-        today = date.today().strftime()
+        today = date.today()
         age = relativedelta(today, dob).years
         # Autofill ward and constituency [make county uppercase when calling function]
-        row = get_row(file,column,polling_station,county.upper())
+        row = get_row(file,county.upper(),column,polling_station)
+        print(row)
         constituency_name = row['CONSTITUENCY NAME'].iloc[0]
         ward_name = row['CAW_NAME'].iloc[0]
 
         # create id: affiliate_level-recruitor_id-identifier [A-A1-2]
-        affiliate_level = get_affiliate_level(recruitor_id)
+        affiliate_level = get_affiliate_level(str(recruitor_id))
 
         # New recruitee info
         new_recruitee = {
+            'affiliate_level': affiliate_level.zfill(3),
             'recruitor_id': recruitor_id,
-            'affiliate_level': affiliate_level,
             'recruitment_date': today,
             'nationalID': national_id,
             'name': full_name,
@@ -86,10 +87,11 @@ with st.form('add_recruited_voter'):
             'phoneNumber': phone_number,
             'email': email,
             'county': county.upper(),
-            'constituenceyAutofill': constituency_name,
+            'constituencey_autofill': constituency_name,
             'ward_autofill': ward_name,
             'pollingStation': polling_station,
         }
+        print(new_recruitee)
         # For some reason, I have to wrap dictionary in list due to scalar values or sth.
         df_new_voter = pd.DataFrame([new_recruitee])
         # Append new recruitee to recruited voter file

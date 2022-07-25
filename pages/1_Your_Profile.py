@@ -1,7 +1,6 @@
 import streamlit as st
 from data.data import county_list
 from utilities.df_to_list import get_column_values
-from utilities.init_state_session import init_session_state_values
 
 
 
@@ -12,18 +11,15 @@ st.set_page_config(
 )
 
 st.title('Add your profile')
-
 #session state variables
 ss = st.session_state
-#Initialize state values using custom imported function 
-init_session_state_values(ss)
-ss
 
 #global variables for this file
 file = 'registered_voters.xlsx'
 
 #Get regions according to county and office
 def get_admin_regions(admin_region):
+    print(ss.county)
     regions = get_column_values(file,ss.county,admin_region)
     return regions
 def get_mca_admin_regions(admin_region):
@@ -50,7 +46,6 @@ if ss.county and ss.target_office:
         constituency = st.selectbox("Select Constituency", constituencies, key='constituency')
         if ss.constituency:
             st.write("Focus is on the "+ ss.constituency + " constituency it's wards and polling stations")
-
     elif ss.target_office == 'MCA':
         #get constituencies of chosen county
         admin_region = 'CONSTITUENCY NAME'

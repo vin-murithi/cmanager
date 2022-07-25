@@ -9,14 +9,13 @@ from utilities.init_state_session import init_session_state_values
 st.set_page_config(
     page_title='IEBC Data',
     page_icon=':bar_chart',
+    layout='centered',
 )
 
 
 #session state variables
 ss = st.session_state
-#Initialize state values using custom imported function 
-init_session_state_values(ss)
-ss
+
 
 #variables local to this file
 file = 'registered_voters.xlsx'
@@ -56,29 +55,43 @@ if ss.county and ss.target_office:
             mode = "number",
             value = total_voters,
             title = {'text': "Total voters in " + ss.county +" county"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.5]}
         ))
         #total polling stations in county figure
         total_constituencies_fig = go.Figure(go.Indicator(
             mode = "number",
             value = total_constituencies,
             title = {'text': "Total constituencies in " + ss.county +" county"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.4]}
+
         ))
         #total polling stations in county figure
         total_wards_fig = go.Figure(go.Indicator(
             mode = "number",
             value = total_wards,
             title = {'text': "Total wards in " + ss.county +" county"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.4]}
+
         ))
         #total wards in county figure
         total_polling_stations_fig = go.Figure(go.Indicator(
             mode = "number",
             value = total_polling_stations,
             title = {'text': "Total polling stations in " + ss.county +" county"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.4]}
+
         ))
-        st.plotly_chart(total_voters_fig)
-        st.plotly_chart(total_constituencies_fig)
-        st.plotly_chart(total_wards_fig)
-        st.plotly_chart(total_polling_stations_fig)
+        #Put figures in columns
+        col1, col2 = st.columns(2)
+        col3, col4 = st.columns(2)
+        with col1:
+            st.plotly_chart(total_voters_fig)
+        with col2:
+            st.plotly_chart(total_polling_stations_fig)
+        with col3:
+            st.plotly_chart(total_wards_fig)
+        with col4:
+            st.plotly_chart(total_constituencies_fig)
         st.table(iebc_data)
     elif not ss.ward:
         iebc_data = get_row(file, sheet_name, column, column_value)
@@ -132,8 +145,12 @@ if ss.county and ss.target_office:
             value = total_polling_stations,
             title = {'text': "Total polling stations in " + ss.ward +" ward"},
         ))
-        st.plotly_chart(total_voters_fig)
-        st.plotly_chart(total_polling_stations_fig)
+        #plot figures in columns
+        col1, col2 = st.columns(2)
+        with col1:
+            st.plotly_chart(total_voters_fig)
+        with col2:
+            st.plotly_chart(total_polling_stations_fig)
         st.table(iebc_data)
 else:
     st.title('Please create a profile to get pertinent data')

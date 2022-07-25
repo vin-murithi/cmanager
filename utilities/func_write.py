@@ -1,11 +1,10 @@
-#get affiliate level
-def get_affiliate_level(recruitor_id):
-    #split recruitor id
-    recruitor_affiliate_level = recruitor_id.split('-')
-    #take the first section of Id
-    recruitor_affiliate_level = recruitor_affiliate_level[0]
-    #increment id and return it
-    recruitee_affiliate_level = chr(ord(recruitor_affiliate_level)+1)
-    return recruitee_affiliate_level
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
-get_affiliate_level()
+#get days to elections
+def days_to_elections():
+    election_date = date(2022,8,9)
+    today = date.today()
+    days_to_elections = election_date - today
+    return days_to_elections.days
+    print(days_to_elections.days)
