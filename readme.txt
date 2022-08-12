@@ -1,3 +1,20 @@
+ firebaseConfig = {
+
+  apiKey: "AIzaSyAj1ntKPfnh1zoC_eXzIP3NMxanbeGaofU",
+
+  authDomain: "cmanager-31e98.firebaseapp.com",
+
+  projectId: "cmanager-31e98",
+
+  storageBucket: "cmanager-31e98.appspot.com",
+
+  messagingSenderId: "723197037101",
+
+  appId: "1:723197037101:web:925d430fd39ac64c50c6a4"
+
+};
+		
+
 PROPOSED SOLUTION
 Sheet 1: Spreadsheet for projection data
 - No of voters

@@ -7,4 +7,3 @@ def days_to_elections():
     today = date.today()
     days_to_elections = election_date - today
     return days_to_elections.days
-    print(days_to_elections.days)

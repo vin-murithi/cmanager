@@ -138,12 +138,14 @@ if ss.county and ss.target_office:
             mode = "number",
             value = total_voters,
             title = {'text': "Total voters in " + ss.ward +" ward"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.4]}
         ))
         #total polling centers in ward
         total_polling_stations_fig = go.Figure(go.Indicator(
             mode = "number",
             value = total_polling_stations,
             title = {'text': "Total polling stations in " + ss.ward +" ward"},
+            domain = {'x': [0, 0.3], 'y': [0, 0.4]}
         ))
         #plot figures in columns
         col1, col2 = st.columns(2)
